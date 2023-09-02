@@ -1,0 +1,141 @@
+Classe WebTestClient
+
+A classe `WebTestClient` é uma parte da estrutura de teste fornecida pelo Spring Framework, especificamente para testar aplicativos da web 
+reativos que usam o Spring WebFlux. Ela permite que você realize testes de integração em seu aplicativo da web reativo simulando solicitações 
+HTTP e verificando as respostas.
+
+Aqui estão algumas das principais funcionalidades e finalidades da classe `WebTestClient`:
+
+1. **Realizar Solicitações HTTP**: Com o `WebTestClient`, você pode realizar solicitações HTTP, como GET, POST, PUT, DELETE e outros, para 
+   endpoints do seu aplicativo da web reativo.
+
+2. **Testar Controladores**: Você pode usá-lo para testar os controladores do Spring, simulando solicitações HTTP e verificando se os 
+   controladores estão respondendo corretamente.
+
+3. **Verificar Respostas**: O `WebTestClient` permite que você verifique as respostas HTTP recebidas do servidor. Você pode verificar o status 
+   da resposta, o corpo da resposta e os cabeçalhos da resposta.
+
+4. **Testar Fluxos Reativos**: Como o Spring WebFlux é voltado para a programação reativa, o `WebTestClient` é especialmente útil para testar 
+   fluxos reativos. Você pode testar como seu aplicativo reage a solicitações assíncronas e eventos reativos.
+
+5. **Integração com Asserts**: O `WebTestClient` é frequentemente usado em conjunto com as bibliotecas de assertivas, como JUnit ou TestNG, para 
+   criar testes de integração completos que verificam se o aplicativo se comporta como esperado.
+
+6. **Testes de Integração End-to-End**: Ele permite a execução de testes de integração de ponta a ponta em seu aplicativo, simulando a interação 
+   do cliente com o servidor por meio de solicitações HTTP.
+
+7. **Configuração de Clientes Personalizados**: Você pode configurar instâncias do `WebTestClient` para personalizar várias configurações, como 
+   cabeçalhos, autenticação e outros detalhes das solicitações.
+
+8. **Trabalhar com Formatos de Dados**: O `WebTestClient` pode ser usado para testar a serialização e desserialização de objetos em diferentes 
+   formatos de dados, como JSON ou XML.
+
+Em resumo, a classe `WebTestClient` é uma ferramenta poderosa para testar aplicativos da web reativos no ecossistema Spring. Ela permite que 
+você teste suas APIs, controladores e fluxos reativos de forma eficaz, verificando se eles se comportam conforme o esperado e fornecendo 
+confiança na qualidade do seu aplicativo.
+
+
+---------------------------------------------------------------------------- // ----------------------------------------------------------------------------
+
+Explicando esse script:
+
+ webTestClient.post()
+    .uri("/todos")
+	.bodyValue(todo)
+	.exchange()
+	.expectStatus().isOk()
+	.expectBody()
+	.jsonPath("$").isArray()
+	.jsonPath("$.length()").isEqualTo(1)
+	.jsonPath("$[0].nome").isEqualTo(todo.getNome())
+	.jsonPath("$[0].descricao").isEqualTo(todo.getDescricao())
+	.jsonPath("$[0].realizado").isEqualTo(todo.isRealizado())
+	.jsonPath("$[0].prioridade").isEqualTo(todo.getPrioridade());
+
+O código é uma sequência de chamadas encadeadas usando o `WebTestClient`, que é uma classe fornecida pelo Spring Framework para realizar testes 
+de integração em aplicativos da web reativos. Vou explicar cada parte deste código:
+
+1. `webTestClient.post()`: Este é o ponto de partida da chamada. Ele indica que você está prestes a fazer uma solicitação HTTP POST usando o 
+   `WebTestClient`.
+
+2. `.uri("/todos")`: Esta linha especifica a URI para a qual a solicitação POST será enviada. No seu caso, parece estar enviando uma solicitação 
+    POST para "/todos".
+
+3. `.bodyValue(todo)`: Aqui você está definindo o corpo da solicitação POST. O objeto `todo` está sendo usado como o corpo da solicitação. Isso 
+    significa que você está enviando um objeto JSON representando um item de tarefa (ou "todo") para o servidor.
+
+4. `.exchange()`: Esta chamada `exchange()` inicia a execução da solicitação HTTP que você definiu nas etapas anteriores. Ela retorna um objeto 
+   `ClientResponse` que representa a resposta do servidor.
+
+5. `.expectStatus().isOk()`: Esta linha verifica se o status da resposta HTTP é "isOk()", ou seja, se o código de status HTTP é 200 OK. Isso 
+    verifica se a solicitação foi bem-sucedida.
+
+6. `.expectBody()`: Esta chamada indica que você está prestes a verificar o corpo da resposta. Isso permite que você faça afirmações sobre o 
+    corpo da resposta.
+
+7. `.jsonPath("$").isArray()`: Aqui você está usando uma afirmação JSONPath para verificar se o corpo da resposta é um array JSON. Isso garante 
+    que a resposta seja uma matriz de objetos JSON.
+
+8. `.jsonPath("$.length()").isEqualTo(1)`: Esta linha verifica se o comprimento (ou tamanho) da matriz JSON é igual a 1. Isso verifica se apenas 
+    um objeto JSON foi retornado na resposta.
+
+9. `.jsonPath("$[0].nome").isEqualTo(todo.getNome())`: Aqui, você está usando JSONPath para verificar se o valor da propriedade "nome" do 
+    primeiro objeto na matriz JSON é igual ao valor da propriedade "nome" do objeto `todo` que você enviou na solicitação. Isso verifica se os nomes correspondem.
+
+10. `.jsonPath("$[0].descricao").isEqualTo(todo.getDescricao())`: Da mesma forma, esta linha verifica se o valor da propriedade "descricao" do 
+     primeiro objeto na matriz JSON é igual ao valor da propriedade "descricao" do objeto `todo`.
+
+11. `.jsonPath("$[0].realizado").isEqualTo(todo.isRealizado())`: Aqui você está verificando se o valor da propriedade "realizado" do primeiro 
+     objeto na matriz JSON é igual ao valor da propriedade "realizado" do objeto `todo`.
+
+12. `.jsonPath("$[0].prioridade").isEqualTo(todo.getPrioridade())`: Por fim, esta linha verifica se o valor da propriedade "prioridade" do 
+     primeiro objeto na matriz JSON é igual ao valor da propriedade "prioridade" do objeto `todo`.
+
+Resumindo, este código está enviando uma solicitação HTTP POST para criar uma tarefa (ou "todo") no servidor e, em seguida, verifica se a 
+resposta do servidor atende a determinados critérios. Isso é feito por meio de verificações JSONPath que comparam os valores no corpo da 
+resposta com os valores do objeto `todo` que você enviou. Se todas as verificações passarem, o teste será considerado bem-sucedido. Caso 
+contrário, uma exceção será lançada indicando que algo deu errado na criação da tarefa.
+
+---------------------------------------------------------------------------- // ----------------------------------------------------------------------------
+
+Enum WebEnvironment
+
+A Enum WebEnvironment é fornecida pelo Spring Framework para configurar o ambiente de teste ao iniciar um contexto de aplicativo Spring durante 
+testes de integração. Ela define os diferentes tipos de ambientes que podem ser usados para testes.
+
+A enumeração WebEnvironment define três valores principais:
+
+1. WebEnvironment.NONE: Este valor é usado quando você deseja executar seus testes em um ambiente que não requer um ambiente da web. Isso 
+   significa que o aplicativo Spring não será iniciado como um aplicativo da web. Este é o valor padrão quando você não especifica um ambiente explicitamente.
+
+2. WebEnvironment.RANDOM_PORT: Como mencionado anteriormente, este valor configura o ambiente de teste para iniciar o aplicativo Spring em uma 
+   porta aleatória disponível. Isso é útil para testes de integração em que você deseja testar a interação entre os componentes do aplicativo e o servidor de aplicativos incorporado.
+
+3. WebEnvironment.DEFINED_PORT: Este valor configura o ambiente de teste para iniciar o aplicativo Spring em uma porta específica que você pode 
+   definir usando a propriedade server.port em sua configuração de teste. Isso é útil quando você deseja controlar explicitamente a porta em que o aplicativo será executado durante o teste.
+
+Em resumo, a enumeração WebEnvironment permite configurar o ambiente de teste de acordo com suas necessidades. Ela determina se o aplicativo 
+Spring será iniciado como um aplicativo da web e se a porta será definida automaticamente (aleatória) ou definida explicitamente para seus 
+testes de integração. A escolha do valor depende do tipo de teste que você está realizando e de seus requisitos de configuração.
+
+--------------- // ---------------
+
+O WebEnvironment.RANDOM_PORT é uma constante do Spring Framework que é usada para configurar o ambiente de teste ao iniciar um contexto de 
+aplicativo Spring durante testes de integração. Ela especifica que o aplicativo deve ser iniciado em uma porta aleatória disponível, em vez de em uma porta específica predefinida.
+
+Aqui estão alguns detalhes sobre como funciona e quando você pode usá-lo:
+
+Porta Aleatória: Quando você configura o ambiente de teste como WebEnvironment.RANDOM_PORT, o Spring Boot escolhe uma porta aleatória disponível 
+no sistema operacional para iniciar seu aplicativo. Isso é útil para evitar conflitos de porta, especialmente em cenários em que vários testes 
+podem ser executados em paralelo.
+
+Testes de Integração: Normalmente, o WebEnvironment.RANDOM_PORT é usado em testes de integração, nos quais você deseja testar a integração real 
+entre os componentes do seu aplicativo (por exemplo, controladores, serviços, camada de persistência) e o servidor de aplicativos incorporado.
+
+Diferente de Porta Fixa: Em contraste com WebEnvironment.DEFINED_PORT, que permite que você configure uma porta fixa para seus testes, o 
+WebEnvironment.RANDOM_PORT deixa o Spring Boot escolher uma porta disponível automaticamente. Isso é útil quando você deseja evitar conflitos de 
+porta em ambientes de teste compartilhados ou quando você simplesmente não se preocupa com a porta específica em que o aplicativo será executado 
+durante o teste.
+
+Acesso à Porta: Após o início do aplicativo, você pode obter a porta atribuída usando o método getLocalPort() do objeto WebTestClient, caso 
+esteja usando-o. Isso é útil se você precisar construir URLs para suas solicitações HTTP durante os testes.

@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "todos")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor // Construtor com todos os argumentos
+@NoArgsConstructor // Construtor sem argumentos
 public class Todo {
 
     @Id
@@ -25,4 +25,11 @@ public class Todo {
     private String descricao;
     private boolean realizado;
     private int prioridade;
+
+    public Todo(String nome, String descricao, boolean realizado, int prioridade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.realizado = realizado;
+        this.prioridade = prioridade;
+    }
 }

@@ -11,7 +11,7 @@ import com.daniel.todolist.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor // gera automaticamente um construtor que aceita todos os campos marcados como final
 public class TodoService {
 
     private final TodoRepository todoRepository;
