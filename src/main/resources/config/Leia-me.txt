@@ -139,3 +139,48 @@ durante o teste.
 
 Acesso à Porta: Após o início do aplicativo, você pode obter a porta atribuída usando o método getLocalPort() do objeto WebTestClient, caso 
 esteja usando-o. Isso é útil se você precisar construir URLs para suas solicitações HTTP durante os testes.
+
+---------------------------------------------------------------------------- // ----------------------------------------------------------------------------
+
+Swagger
+
+Swagger é uma estrutura de código aberto que ajuda os desenvolvedores a projetar, criar, documentar e consumir APIs REST de forma mais fácil e 
+eficiente. Ele oferece um conjunto de ferramentas que permite aos desenvolvedores descrever suas APIs de maneira padronizada, gerar 
+automaticamente documentação interativa e até mesmo testar as APIs diretamente através de uma interface web.
+
+Aqui estão algumas das principais funcionalidades e componentes do Swagger:
+
+1. **Definição de API (OpenAPI Specification):** Swagger usa a OpenAPI Specification (anteriormente conhecida como Swagger Specification) para 
+   descrever a estrutura e os detalhes de uma API REST. Essa especificação é escrita em formato JSON ou YAML e fornece informações detalhadas sobre os endpoints, os métodos HTTP suportados, os parâmetros, os tipos de dados de entrada e saída, etc.
+
+2. **Documentação Automática:** Com base na definição da API, o Swagger gera automaticamente documentação interativa (geralmente em formato HTML) 
+   que descreve a API de maneira clara e compreensível. Isso inclui informações sobre os endpoints, os parâmetros, os exemplos de solicitação e 
+   resposta, os modelos de dados e muito mais.
+
+3. **UI Interativa:** Além da documentação estática, o Swagger também fornece uma interface de usuário (UI) interativa conhecida como Swagger UI. 
+   Os desenvolvedores e os usuários da API podem explorar e testar a API diretamente a partir dessa interface, enviando solicitações HTTP e 
+   visualizando as respostas.
+
+4. **Geração de Clientes e Servidores:** Com base na especificação da API, é possível gerar automaticamente clientes para várias linguagens de 
+   programação e até mesmo servidores que implementam a API. Isso pode acelerar o desenvolvimento, pois os desenvolvedores não precisam criar 
+   código manualmente para consumir ou fornecer a API.
+
+5. **Validação de Documentação:** Swagger ajuda a manter a documentação da API sincronizada com a implementação real. Se a especificação da API 
+   for atualizada, a documentação também pode ser regenerada automaticamente, garantindo que ela esteja sempre precisa.
+
+6. **Suporte à Autenticação e Autorização:** Swagger permite que você descreva esquemas de autenticação e autorização para sua API, o que é útil 
+   para testar endpoints protegidos durante o desenvolvimento.
+
+7. **Ecossistema Rico:** Swagger possui uma comunidade ativa e um ecossistema de ferramentas que o tornam amplamente adotado em projetos de 
+   desenvolvimento de API. Além disso, ele é compatível com várias linguagens de programação e frameworks.
+
+Em resumo, o Swagger simplifica o processo de criação, documentação e consumo de APIs REST, tornando-o uma ferramenta valiosa para 
+desenvolvedores que trabalham com serviços web baseados em RESTful. Ele promove a padronização, a documentação detalhada e a facilidade de uso 
+das APIs, tornando a colaboração entre equipes de desenvolvimento e o desenvolvimento de clientes mais eficiente.
+
+--------------- // ---------------
+
+Acessando a Aplicação com o swagger:
+
+Swagger - link: localhost:8080/swagger-ui.html
+(Gera todas as rotas da aplicação)
