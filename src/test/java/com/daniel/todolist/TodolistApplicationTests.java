@@ -33,4 +33,17 @@ class TodolistApplicationTests {
 				.jsonPath("$[0].prioridade").isEqualTo(todo.getPrioridade());
 	}
 
+	@Test
+	void testCreateTodoFailure() {
+
+		webTestClient.post()
+				.uri("/todos")
+				.bodyValue(new Todo("", "", false, 0))
+				.exchange()
+				.expectStatus().isBadRequest();
+	}
+
+	/* Vamos simular um erro como se o campo aceitasse valores vazios. Ao testar vai ser verificado que ocorre um BadRequest dando status 200 (Ok). 
+	Logo, esse erro é um exemplo que será corrigido na nossa aplicação, pois queremos que valores não preenchidos (ou vazios) sejam inválidos.*/
+
 }
